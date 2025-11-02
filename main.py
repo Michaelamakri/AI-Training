@@ -12,17 +12,8 @@ print(f"Using {device} device")
 class NeuralNetwork(nn.Module):
     def __init__(self):
         super().__init__()
-        #Μετατροπή μιας 2D εικόνας σε 1D (π.χ 28x28 -> 784 pixels)
-        self.flatten = nn.Flatten() 
-        #Sequential: περιέχει σειριακά τα modules του μοντέλου
-        #τα δεδομένα επίσης περνούν σειριακά μέσα από το δίκτυο
         self.linear_relu_stack = nn.Sequential(
-            #Εφαρμόζει ένα γραμμικό μετασχηματισμό στα 
-            #δεδομένα εισόδου χρησιμοποιώντας τα weights & biases
             nn.Linear(28*28, 512),
-            #Μη-γραμμικά activations που βοηθούν το μοντέλο 
-            #να "μάθει" τη συσχέτιση μεταξύ δεδομένων
-            #εισόδου και εξόδου
             nn.ReLU(),
             nn.Linear(512, 512),
             nn.ReLU(),
@@ -56,4 +47,5 @@ class NeuralNetwork2(nn.Module):
         return logits
     
 model = NeuralNetwork2().to(device)
+
 print(model)
